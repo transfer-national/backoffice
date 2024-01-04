@@ -1,0 +1,56 @@
+*{
+    margin:0 ;
+    padding: 0;
+    box-sizing: border-box;
+
+    
+}
+
+.tndetails-content{
+    
+    
+    
+    width: 45%;
+}
+.tndetails-content h4{
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.tndetails-content h2{
+    margin-bottom: 35px;
+}
+
+
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    
+    margin-bottom: 10px;
+  
+    justify-content: space-between;
+    
+    
+    
+}
+
+.update-state-button{
+    background-color: rgba(182, 62, 255, 1);
+    border-radius: 20px;
+    width: 210px;
+    height: 35px ;
+    padding : 7px 10px 7px 10px ;
+    color : white  ;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 35px;
+    cursor: pointer;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+.update-state-button:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+

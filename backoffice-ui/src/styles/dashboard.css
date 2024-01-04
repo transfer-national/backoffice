@@ -1,0 +1,84 @@
+
+.dashboard-content{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding-top: 60px;
+    background-color: rgba(245, 245, 245, 1);
+    
+    
+}
+
+.dashboard-row{
+    display: flex;
+    flex-wrap: wrap;
+   
+    justify-content: space-between;
+    width: 100% ;
+    
+    
+}
+.dashboard-row .column {
+    font-size: 18px;
+    font-weight: bold;
+}
+.dashboard-row  .column strong{
+    color: green ;
+}
+
+.solde{
+    background-color: white;
+    padding : 15px ; 
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+
+.first-box-column{
+    display: flex;
+    height: 250px;
+    width: 500px;
+    background-color: rgba(182, 62, 255, 1);
+    justify-content: center;
+    align-items: center;
+    margin-right: 80px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+}
+
+.second-box-column{
+    display: flex;
+    height: 250px;
+    width: 500px;
+    background-color: rgba(62, 139, 255, 1);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    
+}
+.third-box-column{
+    display: flex;
+    height: 250px;
+    width: 500px;
+    background-color: rgba(255, 198, 52, 1);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+
+
+
+
+.box-title{
+    color:white ;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 25px;
+    
+   
+}

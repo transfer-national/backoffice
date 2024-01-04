@@ -1,0 +1,22 @@
+.second-section-field{
+    height: 40px ;
+    border-radius: 20px;
+    width:  400px;
+    text-indent: 12px;
+    border-color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 15px;
+    
+}
+form{
+    width: 105%;
+
+    
+}
+
+.form-row{
+    display: flex;
+    flex-wrap: wrap;
+    
+    
+    justify-content: space-between;
+}

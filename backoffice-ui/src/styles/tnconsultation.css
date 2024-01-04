@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body , html{
+    min-height: 100vh;
+    background-color:rgba(245, 245, 245, 1) ;
+    padding-bottom: 50px;
+    margin: 0;
+    padding: 0;
+   
+}
+
+.consultation-page-content{
+    
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+    padding-top: 100px;
+    
+   
+   
+    
+}
+
+.field{
+    height: 40px ;
+    border-radius: 20px;
+    width:  600px;
+    text-indent: 12px;
+    border-color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+
+}
+.form-title{
+    font-size: 32px ;
+    font-weight: bold;
+    padding : 35px 0px 35px 0px;
+    
+
+}
+
+.button{
+    background-color: rgba(182, 62, 255, 1);
+    border-radius: 20px;
+    width: 110px;
+    height: 35px ;
+    padding : 7px 10px 7px 10px ;
+    color : white  ;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 35px;
+    cursor: pointer;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.button:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

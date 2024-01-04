@@ -1,0 +1,22 @@
+
+
+
+
+.radio-row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.radio-row label{
+    font-size: 17px;
+    text-indent: 10px;
+}
+
+.fee-row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    margin-top: 20px;
+
+}
