@@ -3,12 +3,22 @@ import agentReducer from './features/AgentsSlice'
 import transfertReducer from './features/TransfertSlice'
 import loginReducer from "./features/LoginSlice"
 import { TypedUseSelectorHook, useSelector , useDispatch} from "react-redux";
+import { persistReducer , persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; 
 
-const store= configureStore({
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, loginReducer);
+
+export const store= configureStore({
     reducer:{
       agent: agentReducer,
       transfert: transfertReducer,
-      login:  loginReducer
+      login:  persistedReducer
     }
   })
 
@@ -16,4 +26,5 @@ const store= configureStore({
 export const useAppDispatch :()=> typeof store.dispatch = useDispatch ;
 export const useAppSelector : TypedUseSelectorHook<ReturnType<typeof store.getState>> =useSelector ;
 
-export default store ;
+
+export const persistor = persistStore(store);

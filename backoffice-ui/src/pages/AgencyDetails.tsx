@@ -3,13 +3,13 @@ import Navbar from '../components/Navbar'
 import '../styles/agencydetails.css'
 
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+
 import { useAppSelector } from '../store/store'
 const AgencyDetails = () => {
 
    
 
-  const agent = useAppSelector(state=> state.agent.data)
+  const agent = useAppSelector((state: { agent: { data: any } })=> state.agent.data)
   console.log(agent)
   return (
     <div>

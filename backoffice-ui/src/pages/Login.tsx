@@ -4,6 +4,7 @@ import { useAppDispatch } from '../store/store'
 import { setLoginData } from '../store/features/LoginSlice'
 import { Navigate , Link} from 'react-router-dom'
 import '../styles/login.css'
+
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
@@ -30,7 +31,7 @@ const Login = () => {
   const handleLogin=async(e: FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
     try{
-      const response = await axios.post("http://100.94.242.43:8080/auth/login" , formData) ;
+      const response = await axios.post("http://100.94.242.12:8080/auth/login" , formData) ;
       console.log(response.data) ;
       dispatch(setLoginData(response.data)) ;
       if(response.data.role === "BACK_OFFICE"){

@@ -11,13 +11,16 @@ import AgencyManagement from './pages/AgencyManagement';
 import UpdateTransfertState from './pages/UpdateTransfertState';
 import AgencyDetails from './pages/AgencyDetails';
 import { Provider } from 'react-redux';
-import store from './store/store';
+import { store , persistor} from './store/store';
 import Login from './pages/Login';
+import { PersistGate } from 'redux-persist/integration/react';
+
 
 function App() {
   return (
     <div className="App">
        <Provider  store={store}> 
+       <PersistGate loading={null} persistor={persistor}>
        <BrowserRouter>
        <Routes>
        <Route path="/" element={<Login />}></Route>
@@ -32,6 +35,7 @@ function App() {
 
         </Routes> 
       </BrowserRouter>
+      </PersistGate>
       </Provider>   
       
     </div>

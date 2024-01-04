@@ -4,7 +4,7 @@ import '../styles/tndetails.css'
 import { Link } from 'react-router-dom'
 import { useAppSelector } from '../store/store'
 const TransfertDetails = () => {
-    const transfert = useAppSelector(state=> state.transfert.data)
+    const transfert = useAppSelector((state: { transfert: { data: any } })=> state.transfert.data)
   return (
     <div>
         <Navbar />
