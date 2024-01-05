@@ -21,7 +21,6 @@
     "react-icons": "^4.12.0",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
-    "react-scripts": "5.0.1",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "router-dom": "^2.2.11",
@@ -55,6 +54,7 @@
   "devDependencies": {
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/estree": "^1.0.5",
-    "@types/redux-persist": "^4.3.1"
+    "@types/redux-persist": "^4.3.1",
+    "react-scripts": "5.0.1"
   }
 }

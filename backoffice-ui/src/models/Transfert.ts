@@ -1,9 +1,11 @@
 import Client from "./Client";
 import Recipient from "./Recipient";
+import TransfertStatusDetails from "./TransfertStatusDetails";
 
 export default interface Transfert {
     ref:number , 
     amount:number ,
     client: Client ,
-    recipient: Recipient
+    recipient: Recipient,
+    statuses:TransfertStatusDetails[]
 }

@@ -59,6 +59,22 @@ body , html{
     margin-left: 15px;
 }
 
+.consultation-button{
+    background-color: rgba(182, 62, 255, 1);
+    border-radius: 20px;
+    width: 130px;
+    height: 35px ;
+    padding : 7px 10px 7px 10px ;
+    color : white  ;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 35px;
+    cursor: pointer;
+    border-color: rgba(0, 0, 0, 0.2);
+    margin-left: 10px;
+
+}
+
 
 .button:hover{
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);

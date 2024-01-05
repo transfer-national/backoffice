@@ -14,6 +14,12 @@ import { Provider } from 'react-redux';
 import { store , persistor} from './store/store';
 import Login from './pages/Login';
 import { PersistGate } from 'redux-persist/integration/react';
+import FirstSection from './pages/FirstSection';
+import SecondSectionGetClient from './pages/SecondSectionGetClient';
+import SecondSectionAddClient from './pages/SecondSectionAddClient';
+import SecondSectionUpdateClient from './pages/SecondSectionUpdateClient';
+import ThirdSection from './pages/ThirdSection';
+import FourthSection from './pages/FourthSection';
 
 
 function App() {
@@ -28,7 +34,12 @@ function App() {
         <Route path="/consultation" element={<TNConsultation />}></Route>
         <Route path="/gestion" element={<AgencyManagement />}></Route>
         <Route path="/details du transfert" element={<TransfertDetails />}></Route>
-        <Route path="/ajouter transfert" element={<AddTransfert />}></Route>
+        <Route path="/ajouter transfert" element={<FirstSection />}></Route>
+        <Route path="/client" element={<SecondSectionGetClient />}></Route>
+        <Route path="/ajouter client" element={<SecondSectionAddClient />}></Route>
+        <Route path="/modifier client" element={<SecondSectionUpdateClient/>}></Route>
+        <Route path="/beneficiares" element={<ThirdSection/>}></Route>
+        <Route path="/infos du transfert" element={<FourthSection/>}></Route>
         <Route path="/changer etat du transfert" element={<UpdateTransfertState />}></Route>
         <Route path="/details de l'agence" element={<AgencyDetails />}></Route>
         

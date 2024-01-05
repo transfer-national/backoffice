@@ -1,6 +1,11 @@
 
 
-
+.form-container{
+    background-color: red;
+   padding: 20px ;
+   margin-top: 15px;
+   border-color: black;
+}
 
 .radio-row{
     display: flex;

@@ -54,7 +54,7 @@ const AgencyManagement = () => {
 
   const handleAddAgent = async()=>{
     try{
-       const response = await axios.post(`http://100.94.242.12:8080/agent` ,newAgent , {headers});
+       const response = await axios.post(`http://192.168.100.237:8080/agent` ,newAgent , {headers});
        console.log(response.data) ;
        setShowMsg(true) ;
        setNewAgent({
@@ -71,23 +71,20 @@ const AgencyManagement = () => {
     }
   }
  
-  const handleSearch= async()=>{
-    try{ 
-      setAgents([])
-      const response = await axios.get<Agent[]>(`http://100.94.242.12:8080/agent?user=${nameOrId}`) ;
-      console.log(response.data)
-        setAgents(response.data)
-
-    }catch(e){
-      console.log(e)
-    }
-  }
+ 
 
   useEffect(()=>{
     async function getAgents(){
       try{
-        const response = await axios.get<Agent[]>("http://100.94.242.12:8080/agent") ;
-        setAgents(response.data)
+        const response = await axios.get<Agent[]>("http://192.168.100.237:8080/agent") ;
+        const filteredAgents= response.data.filter(
+          (rec : Agent) =>
+            rec.name.toLowerCase().includes(nameOrId.toLowerCase()) 
+            
+            
+        );
+
+        setAgents(filteredAgents)
         
 
       }catch(e){
@@ -95,25 +92,25 @@ const AgencyManagement = () => {
       }
     }
     getAgents() ;
-  } , [])
+  } , [nameOrId])
 
   return (
     <div>
          <Navbar />
         <body>
             
-           <div className='consultation-page-content'>
-            <form onSubmit={handleSearch}>
-            <div className='form-title' >Rechercher un agent</div>
+           <div className='consultation-agents-page-content'>
+            <div>
+            <div className='form-title' >Liste des agents<br/></div>
             <div className='seach-row'>
             <input  className= "field" type="text" placeholder='Rechercher par nom' onChange={(e)=> setNameOrId(e.target.value)} required/>
+            <input   onClick={handleOpen} type="submit"  value="Add User"  className='consultation-button'/>
+            </div>
+            </div>
             
-           
-
             
-            <input  type="submit"  value="Rechercher"  className='button'/>
             
-            <input   onClick={handleOpen} type="submit"  value="Add User"  className='button'/>
+            
             <Modal
       open={open}
       onClose={handleClose}
@@ -147,16 +144,16 @@ const AgencyManagement = () => {
       </div>
      
       <button className='button' style={{marginLeft:"250px"}} onClick={handleAddAgent}>Ajouter</button>
-      {showMsg ? <p style={{paddingBottom: '20px', marginLeft: '200px'}}>Agent ajouté avec succès</p> : <p></p>}
+      {showMsg ? <p style={{paddingBottom: '20px', marginLeft: '200px', fontSize:'12px' , fontWeight:'bold'}}>Agent ajouté avec succès</p> : <p></p>}
      </div>
         </Typography>
       </Box>
     </Modal>
             
+            
+          
             </div>
-            </form>
-            </div>
-            <div className='consultation-page-content'>
+            <div className='consultation-agents-page-content'>
             <table className='agents-table'>
             <thead>
           <tr>

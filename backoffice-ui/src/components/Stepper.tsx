@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import FirstSection from '../pages/FirstSection';
-import SecondSection from '../pages/SecondSection';
+import SecondSection from '../pages/SecondSectionGetClient';
 import ThirdSection from '../pages/ThirdSection';
 import FifthSection from '../pages/FifthSection';
 import ForthSection from '../pages/FourthSection';

@@ -1,6 +1,16 @@
+
+.consultation-agents-page-content{
+  display: flex;
+  justify-content: center ;
+  align-items: center;
+  padding-top: 50px;
+  
+}
+
 .search-row{
     display:  flex ; 
     flex-wrap: wrap;
+    
     
 }
 
@@ -14,9 +24,10 @@
   
 .agents-table th {
     background-color: rgba(0, 255, 194, 0.7);
-    text-align: left;
+    text-align:center;
     padding: 10px;
     font-size: 10;
+    
     
   }
   
