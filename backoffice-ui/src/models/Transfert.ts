@@ -5,7 +5,7 @@ import TransfertStatusDetails from "./TransfertStatusDetails";
 export default interface Transfert {
     ref:number , 
     amount:number ,
-    client: Client ,
+    sender: Client ,
     recipient: Recipient,
     statuses:TransfertStatusDetails[]
 }

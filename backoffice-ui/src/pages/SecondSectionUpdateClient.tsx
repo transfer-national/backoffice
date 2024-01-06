@@ -12,7 +12,7 @@ const SecondSectionUpdateClient = () => {
       };
      const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
       const handleBack = () => {
-        navigate('/');
+        navigate('/ajouter transfert');
       };
   return (
     <div  >

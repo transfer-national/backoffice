@@ -20,6 +20,7 @@ import SecondSectionAddClient from './pages/SecondSectionAddClient';
 import SecondSectionUpdateClient from './pages/SecondSectionUpdateClient';
 import ThirdSection from './pages/ThirdSection';
 import FourthSection from './pages/FourthSection';
+import FifthSection from './pages/FifthSection';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/modifier client" element={<SecondSectionUpdateClient/>}></Route>
         <Route path="/beneficiares" element={<ThirdSection/>}></Route>
         <Route path="/infos du transfert" element={<FourthSection/>}></Route>
+        <Route path="/finalisation" element={<FifthSection/>}></Route>
         <Route path="/changer etat du transfert" element={<UpdateTransfertState />}></Route>
         <Route path="/details de l'agence" element={<AgencyDetails />}></Route>
         

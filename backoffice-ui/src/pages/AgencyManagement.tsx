@@ -10,6 +10,9 @@ import Modal from '@mui/material/Modal';
 import { useAppSelector } from '../store/store'
 import Agent from '../models/Agent'
 
+
+
+
 const AgencyManagement = () => {
   const [agents , setAgents] = useState<Agent[]>([])
   const [open, setOpen] = React.useState(false);
@@ -54,7 +57,7 @@ const AgencyManagement = () => {
 
   const handleAddAgent = async()=>{
     try{
-       const response = await axios.post(`http://192.168.100.237:8080/agent` ,newAgent , {headers});
+       const response = await axios.post(`http://100.94.242.78:8080/agent` ,newAgent , {headers});
        console.log(response.data) ;
        setShowMsg(true) ;
        setNewAgent({
@@ -76,7 +79,7 @@ const AgencyManagement = () => {
   useEffect(()=>{
     async function getAgents(){
       try{
-        const response = await axios.get<Agent[]>("http://192.168.100.237:8080/agent") ;
+        const response = await axios.get<Agent[]>(`http://100.94.242.78:8080/agent`) ;
         const filteredAgents= response.data.filter(
           (rec : Agent) =>
             rec.name.toLowerCase().includes(nameOrId.toLowerCase()) 

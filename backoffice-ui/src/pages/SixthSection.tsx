@@ -4,8 +4,9 @@ const SixthSection = () => {
   return (
     <div className='sixth-section-container'>
         <div className='sixth-section-title'>Finalisation</div>
+
        <div className='row'>
-                <div><strong>nom complete du bébéficiaire</strong></div>
+                <div><strong>nom complete du bénéficiaire</strong></div>
                 <div>Mohcine Sahtani</div>
         </div>
 

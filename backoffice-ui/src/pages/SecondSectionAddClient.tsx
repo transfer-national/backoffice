@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Client from '../models/Client';
@@ -6,32 +6,62 @@ import { useAppDispatch, useAppSelector } from '../store/store';
 import axios from 'axios';
 import { setClientData } from '../store/features/ClientSlice';
 
+
+
+
+
+
 const SecondSectionAddClient = () => {
     const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
     const navigate= useNavigate();
-    const [newClient , setNewClient] = useState<Client>({
-    firstName: "",
-   lastName: "",
-    email: "",
-    idExpiration: "",
-    idType: "",
-    nationality: "",
-    address: "",
-    gsm: "",
-    idNumber: "",
-    profession: "",
-    title: "",
-    dob: ""
-    })
+    const [nom , setNom] = useState("")
+    const [prenom , setPrenom] = useState("")
+    const [email , setEmail] = useState("")
+    const [expiration , setExpiration] = useState("")
+    const [type , setType] = useState("")
+    const [nationalite , setNatioanlite] = useState("")
+    const [adresse, setAdresse] = useState("")
+    const [gsm , setGsm] = useState("")
+    const [number , setNumber] = useState("")
+    const [prof , setProf] = useState("")
+    const [titre , setTitre] = useState("")
+    const [dob , setDob] = useState("")
+    const [pays , setPays] = useState("")
+    const [ville , setVille] = useState("")
+    const [paysEm, setPaysEm] = useState("")
+    const [newClient , setNewClient] = useState<Client>()
     const dispatch= useAppDispatch();
 
+    
+    const headers = {
+      'Authorization': user.token, 
+    };
 
     const handleSearch = async() => {
         try{
-            const headers = {
-                'Authorization': user.token, 
-              };
-            const response = await axios.post(`http://192.168.100.237:8080/client`, newClient, {headers})
+           
+
+              const cl={
+                title :titre,
+          firstName: prenom,
+          lastName: nom,
+          emitCountry : paysEm,
+          idType :type,
+          idNumber : number,
+          idExpiration : expiration,
+          dob : dob,
+          profession : prof,
+          nationality: nationalite,
+          address :adresse,
+          city :  ville,
+          country : pays,
+          gsm : gsm,
+          email : email,
+          byAgentId: null,
+              }
+              
+              console.log(cl)
+            const response = await axios.post(`http://100.94.242.78:8080/client`, cl, {headers})
             console.log(response.data);
             dispatch(setClientData(response.data))
             navigate('/beneficiares',{replace:true});
@@ -40,10 +70,10 @@ const SecondSectionAddClient = () => {
             console.log(e)
         }
         
-      };
+      }
     
       const handleBack = () => {
-        navigate('/');
+        navigate('/ajouter transfert');
       };
 
 
@@ -63,54 +93,54 @@ const SecondSectionAddClient = () => {
           <div className='ligneStyle' />
           <div className='cercleStyle'>5</div>
         </div>
-        <form >
+        
     <div className='form-title'>Informations du KYC</div>
     
     <div className='form-row'>
       
-    <input  className= "second-section-field" type="text" placeholder="Titre" />
-    <input  className= "second-section-field" type="text" placeholder="GSM"   />
+    <input  className= "second-section-field" type="text" placeholder="Titre" value={titre} onChange={(e)=>setTitre(e.target.value)}/>
+    <input  className= "second-section-field" type="text" placeholder="GSM"  value={gsm} onChange={(e)=>setGsm(e.target.value)} />
     
     </div>
 
     <div className='form-row' >
-    <input  className= "second-section-field" type="text" placeholder="Nom"  />
-    <input  className= "second-section-field" type="text" placeholder="Pays de nationalité"  />
+    <input  className= "second-section-field" type="text" placeholder="Nom" value={nom} onChange={(e)=>setNom(e.target.value)} />
+    <input  className= "second-section-field" type="text" placeholder="Pays de nationalité" value={nationalite} onChange={(e)=>setNatioanlite(e.target.value)} />
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Prénom"  />
+    <input  className= "second-section-field" type="text" placeholder="Prénom" value={prenom} onChange={(e)=>setPrenom(e.target.value)} />
     <input  className= "second-section-field" type="text" placeholder="Pays d'adresse" />
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Email" />
+    <input  className= "second-section-field" type="text" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} />
     <input  className= "second-section-field" type="text" placeholder="Ville"  />
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Date de naissance"  />
-    <input  className= "second-section-field" type="text" placeholder="Adresse"  />
+    <input  className= "second-section-field" type="text" placeholder="Date de naissance" value={dob} onChange={(e)=>setDob(e.target.value)} />
+    <input  className= "second-section-field" type="text" placeholder="Adresse" value={adresse} onChange={(e)=>setAdresse(e.target.value)} />
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Type de pièce d'identité"   />
-    <input  className= "second-section-field" type="text" placeholder="Profession" />
+    <input  className= "second-section-field" type="text" placeholder="Type de pièce d'identité"  value={type} onChange={(e)=>setType(e.target.value)} />
+    <input  className= "second-section-field" type="text" placeholder="Profession" value={prof} onChange={(e)=>setProf(e.target.value)} />
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Num pièce d'identité"   />
+    <input  className= "second-section-field" type="text" placeholder="Num pièce d'identité"  value={number} onChange={(e)=>setNumber(e.target.value)} />
     <input  className= "second-section-field" type="text" placeholder="Pays d'émission" />
     </div>
 
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Validité de pièce d'identité" />
+    <input  className= "second-section-field" type="text" placeholder="Validité de pièce d'identité" value={expiration} onChange={(e)=>setExpiration(e.target.value)} />
     
     </div>
     
     
-    </form>
+    
   
   <div className='containerButton'>
       <div className='button retour' onClick={handleBack}>

@@ -15,7 +15,7 @@ const Navbar = () => {
         
         <div className='navbar-column'>
            <div className='informations-row'>
-            <div className='navbar-column'>{user?.role}</div>
+            <div className='navbar-column'>{user?.agent.name}</div>
             <div className='role-column'>{user?.role}</div>
            </div>
            

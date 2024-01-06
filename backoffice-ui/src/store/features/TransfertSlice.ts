@@ -14,14 +14,14 @@ export const transfertSlice = createSlice({
   name: 'transfert',
   initialState,
   reducers: {
-    setTransfert: (state, action: PayloadAction<Transfert>) => {
+    setTransfertData: (state, action: PayloadAction<Transfert>) => {
       state.data= action.payload;
     },
-    clearTransfert: (state) => {
+    clearTransfertData: (state) => {
         state.data = null;
       },
   },
 });
 
-export const { setTransfert, clearTransfert } = transfertSlice .actions;
+export const { setTransfertData, clearTransfertData } = transfertSlice .actions;
 export default transfertSlice.reducer;

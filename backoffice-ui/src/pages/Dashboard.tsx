@@ -1,9 +1,9 @@
 import React from 'react'
 import '../styles/dashboard.css'
 import Navbar from '../components/Navbar'
-import  '../assets/money symbol.png' ;
-import '../assets/Find.png'
-import   "../assets/Customer.png"
+import  pn1 from '../assets/money symbol.png' ;
+import pn2 from '../assets/Find.png'
+import  pn3 from  "../assets/Customer.png"
 import {Link} from 'react-router-dom'
 import { useAppSelector } from '../store/store'
 const Dashboard = () => {
@@ -37,7 +37,7 @@ const Dashboard = () => {
         <Link to="/ajouter transfert" style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className='first-box-column'>
         <div>
-            <img  src='../assets/money symbol.png'  alt='error' width="150px" height="90px"/>
+            <img  src={pn1}  alt='error' width="150px" height="90px"/>
             <div className='box-title'>Effectuer un transfert</div>
             </div>
         </div>
@@ -45,7 +45,7 @@ const Dashboard = () => {
         <Link to="/consultation" style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className='second-box-column' >
             <div>
-            <img  src='../assets/Find.png'  alt='error' width="100px" height="90px" />
+            <img  src={pn2}  alt='error' width="100px" height="90px" />
             <div className='box-title'>Consultation des TNs</div>
             </div>
         </div>
@@ -59,7 +59,7 @@ const Dashboard = () => {
         <Link to="/gestion" style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className='third-box-column' >
         <div>
-            <img  src="../assets/Customer.png" alt='error' width="110px" height="90px" />
+            <img  src={pn3} alt='error' width="110px" height="90px" />
             <div className='box-title'>Gestion des agences</div>
             </div>
         </div>

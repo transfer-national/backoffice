@@ -7,6 +7,10 @@ import axios from 'axios'
 import { useAppDispatch, useAppSelector } from '../store/store'
 import { setRecipientsData } from '../store/features/RecipientsSlice'
 
+
+
+
+
 const ThirdSection = () => {
   const navigate = useNavigate()
   const dispatch= useAppDispatch()
@@ -19,6 +23,9 @@ const ThirdSection = () => {
     phoneNumber: ''  
 
   })
+  const [prenom , setPrenom] = useState('')
+  const [nom , setNom] = useState('')
+  const [phone , setPhone] = useState('')
   const [choisenRecipients , setChoisenRecipients] = useState<Recipient[]>([])
   const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
   const headers = {
@@ -40,27 +47,22 @@ const ThirdSection = () => {
   const handleClose = () => setOpen(false);
   
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setNewRecipient({
-      ...newRecipient,
-      [name]: value
-    });
-  } 
+  
   const client= useAppSelector((state: { client: { data: any; }; })=> state.client.data)
 
   const handleAddRecipient = async()=>{
     try{
-       const response = await axios.post(`http://192.168.100.237:8080/client/${client.ref}/recipient` ,newRecipient , {headers});
+      const rec1= {
+        firstName: prenom ,
+        lastName: nom ,
+        phoneNumber: phone  ,
+        clientRef:client.ref
+
+      }
+       const response = await axios.post(`http://100.94.242.78:8080/client/${client.ref}/recipient` ,rec1 , {headers});
        console.log(response.data) ;
        setShowMsg(true) ;
-       setNewRecipient({
-       
-        firstName: '' ,
-        lastName: '' ,
-        phoneNumber: ''  ,
-
-       })
+      
 
     }catch(e){
       console.log(e) ;
@@ -81,7 +83,7 @@ const ThirdSection = () => {
   useEffect(()=>{
     async function getRecipients(){
       try{
-        const response = await axios.get<Recipient[]>(`http://192.168.100.237:8080/client/${client.ref}/recipient`) ;
+        const response = await axios.get<Recipient[]>(`http://100.94.242.78:8080/client/${client.ref}/recipient`) ;
         console.log(response.data)
         const filteredRecipients= response.data.filter(
           (rec : Recipient) =>
@@ -157,16 +159,16 @@ const ThirdSection = () => {
         <h2 style={{ paddingBottom: '20px', marginLeft: '200px' }}>Ajouter un Bénéficiare</h2>
       <div className="divS">
         
-        <input type="text" placeholder= "Nom" name="lastname" required className='field' defaultValue={newRecipient.lastName} onChange={handleInputChange} />
+        <input type="text" placeholder= "Nom"  required className='field' defaultValue={prenom} onChange={(e)=>setPrenom(e.target.value)} />
       </div>
       
       <div className="divS">
         
-        <input type="text" placeholder= "Prénom" name="firstname" required className='field' defaultValue={newRecipient.firstName} onChange={handleInputChange}/>
+        <input type="text" placeholder= "Prénom" required className='field' defaultValue={nom} onChange={(e)=>setNom(e.target.value)}/>
       </div>
       <div className="divS">
         
-        <input type="text" placeholder= "GSM" name="phoneNumber"  className='field' defaultValue={newRecipient.phoneNumber} onChange={handleInputChange} />
+        <input type="text" placeholder= "GSM"   className='field' defaultValue={phone} onChange={(e)=>setPhone(e.target.value)} />
       </div>
       
      

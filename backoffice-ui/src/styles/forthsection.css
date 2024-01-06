@@ -1,10 +1,20 @@
 
 
 .form-container{
-    background-color: red;
+    
    padding: 20px ;
    margin-top: 15px;
    border-color: black;
+   border-bottom: 1px solid #000;
+}
+.finalisation-container{
+    padding: 20px ;
+   margin-top: 15px;
+   background-color: white;
+   border-color: black;
+   width: 700px
+   
+
 }
 
 .radio-row{
@@ -24,4 +34,11 @@
     margin-bottom: 15px;
     margin-top: 20px;
 
+}
+
+.recepient-name{
+    font-size: 27px;
+    font-weight: bold;
+    color: #2e5f5a ;
+    margin-bottom: 35px;
 }

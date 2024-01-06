@@ -10,6 +10,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 
+
+
+
+
 const Login = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate();
@@ -31,7 +35,7 @@ const Login = () => {
   const handleLogin=async(e: FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
     try{
-      const response = await axios.post("http://192.168.100.237:8080/auth/login" , formData) ;
+      const response = await axios.post(`http://100.94.242.78:8080/auth/login` , formData) ;
       console.log(response.data) ;
       dispatch(setLoginData(response.data)) ;
       if(response.data.role === "BACK_OFFICE"){

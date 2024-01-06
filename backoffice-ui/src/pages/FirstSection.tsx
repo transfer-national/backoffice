@@ -5,15 +5,27 @@ import { useAppDispatch, useAppSelector } from '../store/store';
 import { setClientData } from '../store/features/ClientSlice';
 import Navbar from '../components/Navbar';
 import '../styles/firstsection.css'
+import TransferType from '../models/TransferType';
+import { setTransferTypeData } from '../store/features/TransferType';
+
+
+
 const FirstSection = () => {
   const [cin, setCin] = useState(""); 
+
+  const [transfer , setTransfer] = useState("")
+
   const dispatch = useAppDispatch()
   const navigate=useNavigate()
 
   const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
+
+ 
   const handleSearch = async() => {
     try{
-      const response = await axios.get(`http://192.168.100.237:8080/client/cin/${cin}`)
+      console.log(transfer)
+      dispatch(setTransferTypeData(transfer))
+      const response = await axios.get(`http://100.94.242.78:8080/client/cin/${cin}`)
       console.log(response.data) ;
       console.log(response.status)
       if(response.status === 200){
@@ -66,10 +78,10 @@ const FirstSection = () => {
             <form>
             <div className='form-title'>Accès au transfert national</div>
             
-            <div><select className='field'>
+            <div><select className='field' defaultValue={transfer}  onChange={(e)=>setTransfer(e.target.value)}>
               <option value=""  disabled selected>Type de transfert</option>
               <option value="DEBIT">DEBIT</option>
-              <option value="EN ESPECE">EN ESPECE</option>
+              <option value="CASH">EN ESPECE</option>
               
             </select></div>
             <div><select className='field'>

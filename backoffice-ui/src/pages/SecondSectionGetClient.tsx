@@ -17,7 +17,7 @@ const SecondSectionGetClient = () => {
   };
 
   const handleBack = () => {
-    navigate('/');
+    navigate('/ajouter transfert');
   };
 
  
