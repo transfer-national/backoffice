@@ -16,11 +16,12 @@ const TNConsultation = () => {
   const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
   console.log(user.token)
   console.log(ref)
+  const url=process.env.REACT_APP_API_URL
 
   const handleSubmit= async()=>{
     try{
       
-      const response = await axios.get(`http://100.94.242.78:8080/transfer/${ref}`) ;
+      const response = await axios.get(`${url}/transfer/${ref}`) ;
       console.log(response.data)
       
         

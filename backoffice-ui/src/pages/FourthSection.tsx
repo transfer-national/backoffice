@@ -145,7 +145,7 @@ const ForthSection = () => {
             <div className='radio-row'>
               <input type="radio"  onChange={()=>handleFee('FIFTY_FIFTY', (rec.id).toString())}/><label>Frais partagés entre les clients</label>
             </div>
-            <input type="submit"  className="consultation-button"value="enregistrer" />
+            <input type="submit"  className="button"value="enregistrer" />
             
               
               </form>

@@ -6,7 +6,7 @@ import Dashboard from './pages/Dashboard';
 
 import TNConsultation from './pages/TNConsultation';
 import TransfertDetails from './pages/TransfertDetails';
-import AddTransfert from './pages/AddTransfert';
+
 import AgencyManagement from './pages/AgencyManagement';
 import UpdateTransfertState from './pages/UpdateTransfertState';
 import AgencyDetails from './pages/AgencyDetails';
@@ -21,6 +21,7 @@ import SecondSectionUpdateClient from './pages/SecondSectionUpdateClient';
 import ThirdSection from './pages/ThirdSection';
 import FourthSection from './pages/FourthSection';
 import FifthSection from './pages/FifthSection';
+import ConsultationMLT from './pages/ConsultationMLT';
 
 
 function App() {
@@ -43,7 +44,8 @@ function App() {
         <Route path="/infos du transfert" element={<FourthSection/>}></Route>
         <Route path="/finalisation" element={<FifthSection/>}></Route>
         <Route path="/changer etat du transfert" element={<UpdateTransfertState />}></Route>
-        <Route path="/details de l'agence" element={<AgencyDetails />}></Route>
+       
+        <Route path="/consultation multiple" element={<ConsultationMLT />}></Route>
         
 
         </Routes> 

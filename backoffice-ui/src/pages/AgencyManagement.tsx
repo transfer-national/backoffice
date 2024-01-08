@@ -30,8 +30,9 @@ const AgencyManagement = () => {
 
   const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
   const headers = {
-    'Authorization': user.token, 
+    'Authorization': localStorage.getItem('token'), 
   };
+  const url = process.env.REACT_APP_API_URL
 
   
   const style = {
@@ -52,12 +53,12 @@ const AgencyManagement = () => {
       [name]: value
     });
   }
- 
+
 
 
   const handleAddAgent = async()=>{
     try{
-       const response = await axios.post(`http://100.94.242.78:8080/agent` ,newAgent , {headers});
+       const response = await axios.post(`${url}/agent` ,newAgent , {headers});
        console.log(response.data) ;
        setShowMsg(true) ;
        setNewAgent({
@@ -79,7 +80,7 @@ const AgencyManagement = () => {
   useEffect(()=>{
     async function getAgents(){
       try{
-        const response = await axios.get<Agent[]>(`http://100.94.242.78:8080/agent`) ;
+        const response = await axios.get<Agent[]>(`${url}/agent`) ;
         const filteredAgents= response.data.filter(
           (rec : Agent) =>
             rec.name.toLowerCase().includes(nameOrId.toLowerCase()) 

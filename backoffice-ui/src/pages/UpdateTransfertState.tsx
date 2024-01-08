@@ -14,9 +14,9 @@ const UpdateTransfertState = () => {
   const [tranDto , setTranDto] = useState<TransfertDto>()
   const [transfert , setTransfert] = useState<Transfert>(transfert1)
   const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
-    
+    const url= process.env.REACT_APP_API_URL
 const headers = {
-      'Authorization': user.token, 
+      'Authorization': localStorage.getItem('token'), 
  };
   const handleUpdate = async()=>{
     try{
@@ -28,7 +28,7 @@ const headers = {
   
       }
       setTranDto(tr)
-      const response = await axios.put(`http://100.94.242.78:8080/transfer/${transfert.ref}/${etat}` ,transfert, {headers} )
+      const response = await axios.put(`${url}/transfer/${transfert.ref}/${etat}` ,transfert, {headers} )
 
       console.log(response.data)
       
@@ -56,7 +56,7 @@ const headers = {
                 <option value="UNBLOCK">DEBLOQUE</option>
               </select>
             </div>   
-              <div><input  className= "field" type="text" placeholder='Motif de restitution' value={motifRestitution} onChange={(e)=>setMotifRestitution(e.target.value)} required/></div>
+              <div><input  className= "field" type="text" placeholder='Motif de changement' value={motifRestitution} onChange={(e)=>setMotifRestitution(e.target.value)} required/></div>
             
 
            

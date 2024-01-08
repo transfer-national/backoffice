@@ -38,7 +38,7 @@
 .first-box-column{
     display: flex;
     height: 250px;
-    width: 500px;
+    width: 450px;
     background-color: rgba(182, 62, 255, 1);
     justify-content: center;
     align-items: center;
@@ -50,7 +50,7 @@
 .second-box-column{
     display: flex;
     height: 250px;
-    width: 500px;
+    width: 450px;
     background-color: rgba(62, 139, 255, 1);
     justify-content: center;
     align-items: center;
@@ -61,13 +61,25 @@
 .third-box-column{
     display: flex;
     height: 250px;
-    width: 500px;
+    width: 450px;
     background-color: rgba(255, 198, 52, 1);
     justify-content: center;
     align-items: center;
     margin-bottom: 25px;
     text-decoration: none;
     border-radius: 20px;
+}
+
+.fourth-box-column{
+    display: flex;
+    height: 250px;
+    width: 450px;
+    background-color: rgb(11, 59, 130);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    border-radius: 20px;
+
 }
 
 

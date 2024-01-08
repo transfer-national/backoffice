@@ -10,6 +10,8 @@ const Dashboard = () => {
   
   const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
   console.log(user)
+  const balance = localStorage.getItem('agentBalance') ;
+  const threshold = localStorage.getItem('agentThreshold')
   
   return (
     <div>
@@ -20,11 +22,11 @@ const Dashboard = () => {
         <div className='dashboard-row'>
         
           <div className='column'>
-            Solde :  <strong>{user?.agent?.balance} DH</strong>
+            Solde :  <strong>{balance} DH</strong>
            </div>
         
         <div className='column'>
-           Limite de transfert : <strong>{user?.agent?.threshold}  DH</strong>
+           Limite de transfert : <strong>{threshold}  DH</strong>
            
         </div>
         
@@ -61,6 +63,14 @@ const Dashboard = () => {
         <div>
             <img  src={pn3} alt='error' width="110px" height="90px" />
             <div className='box-title'>Gestion des agences</div>
+            </div>
+        </div>
+        </Link>
+        <Link to="/consultation multiple" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <div className='fourth-box-column' >
+            <div>
+            <img  src={pn2}  alt='error' width="100px" height="90px" />
+            <div className='box-title'>Consultation multicritère</div>
             </div>
         </div>
         </Link>

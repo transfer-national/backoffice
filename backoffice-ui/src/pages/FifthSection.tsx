@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas'; 
 import { setLoginData } from '../store/features/LoginSlice';
+import Agent from '../models/Agent';
 
 
 const FifthSection = () => {
@@ -40,9 +41,9 @@ const FifthSection = () => {
   const liste2 =  useAppSelector((state: { recipients: { data: any; }; })=> state.recipients.data);
   const [listeRecipients, setListRecipients] = useState<Recipient[]>(liste2);
   const [Fees , setFees] = useState(0)
-  
+  const [loggedUser  , setLoggedUser] =useState<Agent>() ;
   const headers = {
-    'Authorization': user.token, 
+    'Authorization': localStorage.getItem('token'), 
   };
  
   const calculateFees = () => {
@@ -61,34 +62,34 @@ const FifthSection = () => {
     setFees(totalFees);
   };
   
-  // Call calculateFees whenever your transfers array changes
+  
   useEffect(() => {
     calculateFees();
   }, [transfers]);
 
 const dispatch= useAppDispatch()
-  
+const url= process.env.REACT_APP_API_URL
 
   const handleClick =async () => {
     try{
       console.log("avant")
       console.log(transferFinal)
-     const  response = await axios.post(`http://100.94.242.78:8080/transfer`, transferFinal, {headers})
-     const res= await axios.get('http://100.94.242.78:8080/agent?user=a-9701480834')
-     console.log(res.data)
+     const  response = await axios.post(`${url}/transfer`, transferFinal, {headers})
+     const res= await axios.get(`${url}/agent?user=a-9701480834`)
+    console.log(res.data)
+    navigate('/dashboard' , {replace:true});
+    
      const user2={
       token:user.token ,
       role:user.role ,
       agent: res.data 
      }
      dispatch(setLoginData(user2))
+     localStorage.setItem('agentBalance', user2.agent.balance.toString());
      console.log(response.data)
      console.log("apres")
-     toast.success('Employee added successfully', {
-      position: 'bottom-right',
-      autoClose: 3000, 
-    });
-     navigate('/dashboard' , {replace:true});
+    
+     
 
     }catch(e){
       console.log(e)
@@ -97,17 +98,25 @@ const dispatch= useAppDispatch()
 
     // Fonction pour dessiner une cellule dans le tableau
     const drawCell = (text:string, x:number, y:number, width:number, height:number) => {
-      pdf.rect(x, y, width, height);
+     
       pdf.text(text, x + 2, y + height / 2, { align: 'left', baseline: 'middle' });
     };
     
-    // Position initiale du tableau
+    const topMargin = 10;
+    const titleX = 70;  
+    const titleY = topMargin + 5;   
+    const titleText = 'Reçu de réception';
+    pdf.setFontSize(16); 
+    pdf.text(titleText, titleX, titleY);
+
     let tableX = 10;
-    let tableY = 10;
+    let tableY = titleY + 15;
     
     // Largeur et hauteur des cellules
-    const cellWidth = 80;
-    const cellHeight = 12;
+    const cellWidth = 110;
+    const cellHeight = 8;
+
+    const cellWidth1 = 80;
     
     // Espacement entre les cellules
     const cellSpacing = 5;
@@ -144,14 +153,12 @@ const dispatch= useAppDispatch()
     const signatureY = tableY + 2 * (cellHeight + cellSpacing) + 20;
     
     // Dessiner les cadres de signature
-    pdf.rect(signatureX, signatureY, cellWidth, cellHeight);
-    pdf.text('Signature du Client', signatureX + cellWidth / 2, signatureY + cellHeight / 2, {
+    pdf.text('Signature du Client', signatureX + cellWidth1 / 2, signatureY + cellHeight / 2, {
       align: 'center',
       baseline: 'middle',
     });
     
-    pdf.rect(signatureX + cellWidth + cellSpacing, signatureY, cellWidth, cellHeight);
-    pdf.text('Signature de l\'Agent', signatureX + 1.5 * cellWidth + cellSpacing, signatureY + cellHeight / 2, {
+    pdf.text('Signature de l\'Agent', signatureX + 1.5 * cellWidth1 + cellSpacing, signatureY + cellHeight / 2, {
       align: 'center',
       baseline: 'middle',
     });
@@ -167,7 +174,7 @@ const dispatch= useAppDispatch()
   
 
   const handleBack = () => {
-    navigate('/beneficiares');
+    navigate('/infos du transfert');
   };
   return (
     <div>

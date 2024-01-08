@@ -31,10 +31,10 @@ const SecondSectionAddClient = () => {
     const [paysEm, setPaysEm] = useState("")
     const [newClient , setNewClient] = useState<Client>()
     const dispatch= useAppDispatch();
-
+  const url=process.env.REACT_APP_API_URL
     
     const headers = {
-      'Authorization': user.token, 
+      'Authorization': localStorage.getItem('token'), 
     };
 
     const handleSearch = async() => {
@@ -61,7 +61,7 @@ const SecondSectionAddClient = () => {
               }
               
               console.log(cl)
-            const response = await axios.post(`http://100.94.242.78:8080/client`, cl, {headers})
+            const response = await axios.post(`${url}/client`, cl, {headers})
             console.log(response.data);
             dispatch(setClientData(response.data))
             navigate('/beneficiares',{replace:true});

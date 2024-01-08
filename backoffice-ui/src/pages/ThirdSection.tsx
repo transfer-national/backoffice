@@ -23,13 +23,14 @@ const ThirdSection = () => {
     phoneNumber: ''  
 
   })
+  const url= process.env.REACT_APP_API_URL
   const [prenom , setPrenom] = useState('')
   const [nom , setNom] = useState('')
   const [phone , setPhone] = useState('')
   const [choisenRecipients , setChoisenRecipients] = useState<Recipient[]>([])
   const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
   const headers = {
-    'Authorization': user.token, 
+    'Authorization': localStorage.getItem('token'), 
   };
   const [recipients , setRecipients] = useState<Recipient[]>([])
   const style = {
@@ -59,7 +60,7 @@ const ThirdSection = () => {
         clientRef:client.ref
 
       }
-       const response = await axios.post(`http://100.94.242.78:8080/client/${client.ref}/recipient` ,rec1 , {headers});
+       const response = await axios.post(`${url}/client/${client.ref}/recipient` ,rec1 , {headers});
        console.log(response.data) ;
        setShowMsg(true) ;
       
@@ -83,7 +84,7 @@ const ThirdSection = () => {
   useEffect(()=>{
     async function getRecipients(){
       try{
-        const response = await axios.get<Recipient[]>(`http://100.94.242.78:8080/client/${client.ref}/recipient`) ;
+        const response = await axios.get<Recipient[]>(`${url}/client/${client.ref}/recipient`) ;
         console.log(response.data)
         const filteredRecipients= response.data.filter(
           (rec : Recipient) =>

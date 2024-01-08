@@ -19,13 +19,13 @@ const FirstSection = () => {
   const navigate=useNavigate()
 
   const user = useAppSelector((state: { login: { data: any; }; })=> state.login.data);
-
+const url= process.env.REACT_APP_API_URL
  
   const handleSearch = async() => {
     try{
       console.log(transfer)
       dispatch(setTransferTypeData(transfer))
-      const response = await axios.get(`http://100.94.242.78:8080/client/cin/${cin}`)
+      const response = await axios.get(`${url}/client/cin/${cin}`)
       console.log(response.data) ;
       console.log(response.status)
       if(response.status === 200){
@@ -54,7 +54,7 @@ const FirstSection = () => {
   };
 
   const handleBack = () => {
-    navigate('/');
+    navigate('/dashboard');
   };
 
   
