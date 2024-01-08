@@ -31,10 +31,13 @@ const url= process.env.REACT_APP_API_URL
       if(response.status === 200){
         console.log('hello' )
         dispatch(setClientData(response.data))
+        const clientString = JSON.stringify(response.data);
+        localStorage.setItem('client', clientString);
         console.log('hello2' )
         console.log(response.data.expired)
         if(response.data.expired){
           console.log(response.data.expired)
+          
           navigate("/modifier client" ,{replace:true})
         }else{
           

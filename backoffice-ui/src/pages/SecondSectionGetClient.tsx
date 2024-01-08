@@ -21,9 +21,18 @@ const SecondSectionGetClient = () => {
   };
 
  
-  const client= useAppSelector((state: { client: { data: any; }; })=> state.client.data)
-  
  
+  
+  const storedClientString = localStorage.getItem('client');
+  let client: Client | null = null;
+  if(storedClientString !== null){
+     client = JSON.parse(storedClientString);
+  }else{
+    console.log("item empty")
+  }
+ 
+  
+  
 
 
   return (
@@ -50,44 +59,44 @@ const SecondSectionGetClient = () => {
     
     <div className='form-row'>
       
-    <input  className= "second-section-field" type="text" placeholder="Titre" value={client.title} />
-    <input  className= "second-section-field" type="text" placeholder="GSM" value={client.gsm}  />
+    <input  className= "second-section-field" type="text" placeholder="Titre" value={client?.title} />
+    <input  className= "second-section-field" type="text" placeholder="GSM" value={client?.gsm}  />
     
     </div>
 
     <div className='form-row' >
-    <input  className= "second-section-field" type="text" placeholder="Nom" value={client.lastName}  />
-    <input  className= "second-section-field" type="text" placeholder="Pays de nationalité" value={client.nationality} />
+    <input  className= "second-section-field" type="text" placeholder="Nom" value={client?.lastName}  />
+    <input  className= "second-section-field" type="text" placeholder="Pays de nationalité" value={client?.nationality} />
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Prénom" value={client.firstName} />
+    <input  className= "second-section-field" type="text" placeholder="Prénom" value={client?.firstName} />
     <input  className= "second-section-field" type="text" placeholder="Pays d'adresse" />
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Email" value={client.email} />
+    <input  className= "second-section-field" type="text" placeholder="Email" value={client?.email} />
     <input  className= "second-section-field" type="text" placeholder="Ville"  />
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Date de naissance" value={client.dob}  />
-    <input  className= "second-section-field" type="text" placeholder="Adresse" value={client.address} />
+    <input  className= "second-section-field" type="text" placeholder="Date de naissance" value={client?.dob}  />
+    <input  className= "second-section-field" type="text" placeholder="Adresse" value={client?.address} />
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Type de pièce d'identité" value={client.idType}  />
-    <input  className= "second-section-field" type="text" placeholder="Profession" value={client.profession}/>
+    <input  className= "second-section-field" type="text" placeholder="Type de pièce d'identité" value={client?.idType}  />
+    <input  className= "second-section-field" type="text" placeholder="Profession" value={client?.profession}/>
     </div>
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Num pièce d'identité" value={client.idNumber}  />
+    <input  className= "second-section-field" type="text" placeholder="Num pièce d'identité" value={client?.idNumber}  />
     <input  className= "second-section-field" type="text" placeholder="Pays d'émission" />
     </div>
 
 
     <div className='form-row'>
-    <input  className= "second-section-field" type="text" placeholder="Validité de pièce d'identité" value={client.idExpiration}/>
+    <input  className= "second-section-field" type="text" placeholder="Validité de pièce d'identité" value={client?.idExpiration}/>
     
     </div>
     

@@ -32,11 +32,7 @@ const ConsultationMLT = () => {
                 fromDate:from ,
                 toDate:to
             }
-            const response = await axios.request({
-                url: `${url}/transfer`,
-                method: 'get',
-                data: data  
-              });
+            const response = await axios.get(`${url}/transfer?gsm=${gsm}&idNumber=${id}&from=${from}&to=${to}&status=${etat}`)
             console.log(response.data) ;
             setTranfers(response.data)
 

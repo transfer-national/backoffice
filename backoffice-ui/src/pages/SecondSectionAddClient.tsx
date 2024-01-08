@@ -64,6 +64,8 @@ const SecondSectionAddClient = () => {
             const response = await axios.post(`${url}/client`, cl, {headers})
             console.log(response.data);
             dispatch(setClientData(response.data))
+            const clientString = JSON.stringify(response.data);
+            localStorage.setItem('client', clientString);
             navigate('/beneficiares',{replace:true});
 
         }catch(e){

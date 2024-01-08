@@ -27,11 +27,18 @@ const FifthSection = () => {
   const transfertype = useAppSelector((state: { transfertype: { data: any; }; })=> state.transfertype.data);
   const amount = useAppSelector((state)=> state.amount.data);
   const frais = useAppSelector((state)=> state.fee.data);
-  const client= useAppSelector((state: { client: { data: any; }; })=> state.client.data)
+  const client1= useAppSelector((state: { client: { data: any; }; })=> state.client.data)
+  const storedClientString = localStorage.getItem('client');
+  let client: Client | null = null;
+  if(storedClientString !== null){
+     client = JSON.parse(storedClientString);
+  }else{
+    console.log("item empty")
+  }
 
-  const [sender , setSender] = useState<Client>(client)
+  const [sender , setSender] = useState<Client|null>(client)
   const [transferFinal , setTranser] = useState<MultipleTransfer>({
-    senderRef:client.ref, 
+    senderRef:client1.ref, 
     transferType:transfertype ,
     unitTransfers:transfers
   })
@@ -96,7 +103,7 @@ const url= process.env.REACT_APP_API_URL
     }
     const pdf = new jsPDF();
 
-    // Fonction pour dessiner une cellule dans le tableau
+   
     const drawCell = (text:string, x:number, y:number, width:number, height:number) => {
      
       pdf.text(text, x + 2, y + height / 2, { align: 'left', baseline: 'middle' });
@@ -112,30 +119,30 @@ const url= process.env.REACT_APP_API_URL
     let tableX = 10;
     let tableY = titleY + 15;
     
-    // Largeur et hauteur des cellules
+    
     const cellWidth = 110;
     const cellHeight = 8;
 
     const cellWidth1 = 80;
     
-    // Espacement entre les cellules
+   
     const cellSpacing = 5;
     
-    // Attributs à afficher dans le tableau
-    const attributes = ['Nom complet du bénéficiaire:', 'Type de transfert:', 'Montant du transfert:'];
+   
+    const attributes = ['Nom complet du bénéficiaire:', 'Type de transfert:','Motif de transfert', 'Montant du transfert:'];
     
-    // Dessiner l'en-tête du tableau
+  
    
     
-    // Dessiner le contenu du tableau pour chaque transfert
+   
     for (let i = 0; i < transfers.length; i++) {
-      tableY += cellSpacing; // Ajouter un espacement entre les lignes
+      tableY += cellSpacing; 
     
       const transfer = transfers[i];
       const recipient = listeRecipients[i];
     
-      // Attributs associés à chaque transfert
-      const values = [`${recipient.firstName} ${recipient.lastName}`, transfertype, `${transfer.amount} DH`];
+      
+      const values = [`${recipient.firstName} ${recipient.lastName}`, `${transfertype}`,`${transfer.reason}`, `${transfer.amount} DH`];
     
       for (let j = 0; j < attributes.length; j++) {
         drawCell(attributes[j], tableX, tableY, cellWidth, cellHeight);
@@ -144,15 +151,15 @@ const url= process.env.REACT_APP_API_URL
       }
     }
     
-    // Ajouter le montant total et les frais
+    
     pdf.text(`Montant total de l'opération: ${amount} DH`, tableX, tableY + cellSpacing);
     pdf.text(`Frais de l'opération: ${Fees} DH`, tableX, tableY + cellSpacing + cellHeight + cellSpacing);
     
-    // Position pour les cadres de signature
+    
     const signatureX = 10;
     const signatureY = tableY + 2 * (cellHeight + cellSpacing) + 20;
     
-    // Dessiner les cadres de signature
+    
     pdf.text('Signature du Client', signatureX + cellWidth1 / 2, signatureY + cellHeight / 2, {
       align: 'center',
       baseline: 'middle',
@@ -163,7 +170,7 @@ const url= process.env.REACT_APP_API_URL
       baseline: 'middle',
     });
     
-    // Sauvegarder ou ouvrir le PDF
+  
     pdf.save('transaction_summary.pdf');
     
     
@@ -209,7 +216,7 @@ const url= process.env.REACT_APP_API_URL
     
             <div className='row'>
                     <div><strong>ID du DO</strong></div>
-                    <div>{client.idNumber}</div>
+                    <div>{client?.idNumber}</div>
             </div>
             <div className='row'>
                     <div><strong>type de transfer</strong></div>
