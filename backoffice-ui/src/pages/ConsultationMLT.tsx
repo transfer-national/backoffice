@@ -32,7 +32,7 @@ const ConsultationMLT = () => {
                 fromDate:from ,
                 toDate:to
             }
-            const response = await axios.get(`${url}/transfer?gsm=${gsm}&idNumber=${id}&from=${from}&to=${to}&status=${etat}`)
+            const response = await axios.get(`${url}/transfer?gsm=${gsm}&idNumber=${id}&fromDate=${from}&toDate=${to}&status=${etat}`)
             console.log(response.data) ;
             setTranfers(response.data)
 
@@ -54,7 +54,7 @@ const ConsultationMLT = () => {
                 <input  type="text"  placeholder='phone' className='consultation-input' value={gsm} onChange={(e)=>setGsm(e.target.value)}/>
                 <input  type="text"  placeholder='CIN'className='consultation-input' value={id} onChange={(e)=>setId(e.target.value)}/>
                 <select className='consultation-input' value={etat} onChange={(e)=> setEtat(e.target.value)}>
-                <option value="" disabled>statut</option>
+                <option  disabled>statut</option>
                 <option value="TO_SERVE">EMIS</option>
                 <option value="SERVED">servi</option>
                 <option value="REVERTED">EXTOURNE</option>

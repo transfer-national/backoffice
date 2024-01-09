@@ -48,7 +48,7 @@ const Dashboard = () => {
         <div className='second-box-column' >
             <div>
             <img  src={pn2}  alt='error' width="100px" height="90px" />
-            <div className='box-title'>Consultation des TNs</div>
+            <div className='box-title'>Consultation d'un TN</div>
             </div>
         </div>
         </Link>
