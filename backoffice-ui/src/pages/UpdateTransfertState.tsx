@@ -29,6 +29,7 @@ const headers = {
       }
       setTranDto(tr)
       const response = await axios.put(`${url}/transfer/${transfert.ref}/${etat}` ,transfert, {headers} )
+     
 
       console.log(response.data)
       

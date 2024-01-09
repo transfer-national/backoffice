@@ -16,6 +16,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas'; 
 import { setLoginData } from '../store/features/LoginSlice';
 import Agent from '../models/Agent';
+import ResponseTransfert from '../models/ResponseTransfer';
 
 
 const FifthSection = () => {
@@ -29,6 +30,7 @@ const FifthSection = () => {
   const frais = useAppSelector((state)=> state.fee.data);
   const client1= useAppSelector((state: { client: { data: any; }; })=> state.client.data)
   const storedClientString = localStorage.getItem('client');
+  const [transferResult,setTransferResult] =useState<ResponseTransfert[]>([])
   let client: Client | null = null;
   if(storedClientString !== null){
      client = JSON.parse(storedClientString);
@@ -78,10 +80,16 @@ const dispatch= useAppDispatch()
 const url= process.env.REACT_APP_API_URL
 
   const handleClick =async () => {
+    
     try{
       console.log("avant")
-      console.log(transferFinal)
+      //console.log(transferFinal)
+      console.log("effectuer transfert")
      const  response = await axios.post(`${url}/transfer`, transferFinal, {headers})
+     console.log(response.data)
+     console.log(response.data[0].txRef)
+    
+     
      const res= await axios.get(`${url}/agent?user=a-9701480834`)
     console.log(res.data)
     navigate('/dashboard' , {replace:true});
@@ -93,15 +101,13 @@ const url= process.env.REACT_APP_API_URL
      }
      dispatch(setLoginData(user2))
      localStorage.setItem('agentBalance', user2.agent.balance.toString());
-     console.log(response.data)
-     console.log("apres")
-    
      
+    
+     console.log("apres")
 
-    }catch(e){
-      console.log(e)
-    }
-    const pdf = new jsPDF();
+
+
+     const pdf = new jsPDF();
 
    
     const drawCell = (text:string, x:number, y:number, width:number, height:number) => {
@@ -112,7 +118,7 @@ const url= process.env.REACT_APP_API_URL
     const topMargin = 10;
     const titleX = 70;  
     const titleY = topMargin + 5;   
-    const titleText = 'Reçu de réception';
+    const titleText = 'Reçu de Transfert';
     pdf.setFontSize(16); 
     pdf.text(titleText, titleX, titleY);
 
@@ -129,7 +135,7 @@ const url= process.env.REACT_APP_API_URL
     const cellSpacing = 5;
     
    
-    const attributes = ['Nom complet du bénéficiaire:', 'Type de transfert:','Motif de transfert', 'Montant du transfert:'];
+    const attributes = ['Nom complet du bénéficiaire:', 'Référance de transfert', 'Type de transfert:','Motif de transfert', 'Montant du transfert:'];
     
   
    
@@ -140,9 +146,9 @@ const url= process.env.REACT_APP_API_URL
     
       const transfer = transfers[i];
       const recipient = listeRecipients[i];
-    
       
-      const values = [`${recipient.firstName} ${recipient.lastName}`, `${transfertype}`,`${transfer.reason}`, `${transfer.amount} DH`];
+      
+      const values = [`${recipient.firstName} ${recipient.lastName}` , `${response.data[i].txRef}` ,`${response.data.txRef}` , `${transfertype}`,`${transfer.reason}`, `${transfer.amount} DH`];
     
       for (let j = 0; j < attributes.length; j++) {
         drawCell(attributes[j], tableX, tableY, cellWidth, cellHeight);
@@ -172,6 +178,13 @@ const url= process.env.REACT_APP_API_URL
     
   
     pdf.save('transaction_summary.pdf');
+    
+     
+
+    }catch(e){
+      console.log(e)
+    }
+    
     
     
    
