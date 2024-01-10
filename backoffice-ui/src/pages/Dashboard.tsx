@@ -62,7 +62,7 @@ const Dashboard = () => {
         <div className='third-box-column' >
         <div>
             <img  src={pn3} alt='error' width="110px" height="90px" />
-            <div className='box-title'>Gestion des agences</div>
+            <div className='box-title'>Gestion des agents</div>
             </div>
         </div>
         </Link>

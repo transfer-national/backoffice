@@ -108,7 +108,7 @@ const AgencyManagement = () => {
             <div className='form-title' >Liste des agents<br/></div>
             <div className='seach-row'>
             <input  className= "field" type="text" placeholder='Rechercher par nom' onChange={(e)=> setNameOrId(e.target.value)} required/>
-            <input   onClick={handleOpen} type="submit"  value="Ajouter client"  className='consultation-button'/>
+            <input   onClick={handleOpen} type="submit"  value="Ajouter agent"  className='consultation-button'/>
             </div>
             </div>
             
